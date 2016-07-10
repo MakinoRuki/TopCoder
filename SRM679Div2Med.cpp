@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <map>
 #include <set>
+#define mp make_pair
+#define pii pair<int, int>
 using namespace std;
 class ContestScoreboard {
   public:
@@ -12,7 +14,7 @@ class ContestScoreboard {
     map<string, vector<pii> > submits;
     map<string, int> idx;
     vector<int> times;
-    vectot<int> findWinner (vector<string> scores) {
+    vector<int> findWinner (vector<string> scores) {
       n = scores.size();
       vector<int> ans(n, 0);
       set<int> tmp;
@@ -51,10 +53,14 @@ class ContestScoreboard {
             }
           }
         }
+        submits[name].push_back(mp(score, time));
+        tmp.insert(time);
       }
       for (set<int>::iterator itr = tmp.begin(); itr != tmp.end(); ++itr) {
         times.push_back(*itr);
       }
+      sort(names.begin(), names.end());
+      ans[idx[names[0]]] = 1;
       for (int i = 0; i < times.size(); ++i) {
         int D = times[i];
         vector<pair<int, string> > rank;
@@ -63,7 +69,7 @@ class ContestScoreboard {
           int tot = 0;
           for (int k = 0; k < submits[names[j]].size(); ++k) {
             if (submits[names[j]][k].second <= D) {
-              tot += submits[names[j][k]].first;
+              tot += submits[names[j]][k].first;
             }
           }
           rank.push_back(mp(-tot, names[j]));
