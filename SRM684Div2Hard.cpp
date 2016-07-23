@@ -9,6 +9,7 @@ class Autohamil {
   public:
     int n;
     bool dis[N][N];
+    // Start from point 0, visit all the points. What is the positive condition ? Every pair connects !!
     string check(vector<int> z0, vector<int> z1) {
       n = z0.size();
       memset(dis, false, sizeof(dis));
