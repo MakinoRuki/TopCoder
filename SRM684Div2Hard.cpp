@@ -25,6 +25,7 @@ class Autohamil {
         }
       }
       for (int i = 0; i < n; ++i) {
+        // Start from 0, so every point should be reachable from 0.
         if (i != 0 && !dis[0][i]) return "Does not exist";
         for (int j = 0; j < n; ++j) {
           if (i == j) continue;
