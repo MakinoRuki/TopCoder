@@ -25,6 +25,7 @@ class Autohamil {
         }
       }
       for (int i = 0; i < n; ++i) {
+        if (i != 0 && !dis[0][i]) return "Does not exist";
         for (int j = 0; j < n; ++j) {
           if (i == j) continue;
           if (!(dis[i][j] || dis[j][i])) return "Does not exist";
