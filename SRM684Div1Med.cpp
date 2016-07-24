@@ -12,6 +12,14 @@ ll good[N], bad[N];
 ll pw[N];
 class DivFree {
   public:
+  	int getLog (int k) {
+  		int res = 0;
+  		while (k) {
+  			res++;
+  			k /= 2;
+  		}
+  		return res;
+  	}
     int dfcount(int n, int k) {
       int log_k = getLog(k);
       memset(seq1, 0, sizeof(seq1));
@@ -32,9 +40,11 @@ class DivFree {
           }
         }
         for (int j = 1; j <= k; ++j) {
-          seq2[i + 1] = (seq2[i + 1]) + seq1[i + 1][j]) % mod;
+          seq2[i + 1] = (seq2[i + 1] + seq1[i + 1][j]) % mod;
         }
       }
+      good[0] = 1;
+      good[1] = k;
       for (int i = 2; i <= n; ++i) {
         bad[i] = (bad[i] + bad[i - 1] * (ll)k % mod) % mod;
         for (int l = 2; l <= min(log_k, i); ++l) {
