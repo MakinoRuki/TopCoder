@@ -59,7 +59,7 @@ class ArmyTeleportation {
 					}
 				}
 				sort(org.begin(), org.end());
-				if (solve(xt, yt)) { cout<<i<<endl; return "possible";}
+				if (solve(xt, yt)) return "possible";
 			}
 			return "impossible";
 		}
