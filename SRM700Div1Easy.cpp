@@ -23,6 +23,7 @@ class FindingFriend {
 					if (num1 < num2) ans++;
 					else {
 						if (fp <= num1) ans++;
+						// 注意清0！！！
 						else ans = 0;
 					}
 				} else {
