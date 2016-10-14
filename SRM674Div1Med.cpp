@@ -1,3 +1,4 @@
+//蚂蚁系列。POJ1852Ants,UVA10881Piotr'sAnts,SRM674Div1Med.
 #include <iostream>
 #include <cstdio>
 #include <cstring>
