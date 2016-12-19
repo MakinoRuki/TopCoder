@@ -1,0 +1,6 @@
+SRM 647 Div1 Easy
+给10^5个building设定高度，满足building[1]=0，相邻两个building高度delta<=1，所有高度非负数。
+且满足，给定x(size<=50)和t，building[x[i]] <= t[i]。
+问能达到的最大高度多大。
+Solution：
+枚举最大高度是哪个，然后check能否满足每一对(x,t)。
