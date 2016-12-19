@@ -21,3 +21,9 @@ Solution：
 画图分析，极值点取在capA/3处。那么这两个可以合并成capB + capA/3。多个的以此类推。至于买哪些，直接dp即可。
 
 SRM 647 Div2 Hard
+给10^9个building设定高度，满足building[1]=0，相邻两个building高度delta<=k(k<=10^9)，所有高度非负数。
+且满足，给定x(size<=500)和t，building[x[i]] <= t[i]。
+问能达到的最大高度多大。
+Solution：
+不能枚举最大高度是哪个，但是可以二分最大高度是多少。对于一对(x,t)，二分的最大高度是h，那么h和x的距离d>=(h-t-1)/k。
+因此有非法区间[max(1,x-d),min(x+d,n)]。取所有非法区间的并集，看补集是否为空。
