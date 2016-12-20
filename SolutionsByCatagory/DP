@@ -47,3 +47,6 @@ Solution:
 然后这个实现的时候还有个点，添加每个mask对应结果的时候，按照mask从小到大正常地状压dp就可以了。
 
 SRM 656 Div2 Hard
+有多少1-n(n<=200)的排列满足当且仅当下标idx在给定数组pos(size<=200)时，p[idx]<p[idx+1]。答案mod 1e9+7。
+Solution:考察折线的每个极小值点。用dp[i,j]表示[i,j]的方案数，那么j-i+1个数的最小值必然是放在极小值。
+然后可以分成两段。dp[i,j]=dp[i,k-1]*dp[k+1,j]*C(j-i+1,k-i)。
