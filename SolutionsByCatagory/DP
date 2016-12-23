@@ -120,4 +120,4 @@ SRM 675 Div1 Hard
 Solution：
 直接dp。dp[i,j,k]表示i个点有j个叶子长度为2的path条数为k是否可能。
 
-SRM 677 Div1 Med
+SRM 677 Div1 Med(🌲dp)
