@@ -119,3 +119,5 @@ SRM 675 Div1 Hard
 问能否构造出n(n<=50)个顶点和exactly有s(s<=1000)条长度为2的path的树。
 Solution：
 直接dp。dp[i,j,k]表示i个点有j个叶子长度为2的path条数为k是否可能。
+
+SRM 677 Div1 Med
