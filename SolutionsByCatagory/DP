@@ -114,3 +114,8 @@ Cartesian树定义：小根堆二叉树，中序遍历此树能得到对应排�
 Solution：
 dp[i,j]表示i个数和为j的方案数。转移的时候枚举左边根下标idx1和s1，右边根下标idx2和s2。
 那么可以预处理出sum[s1+abs(k-idx1)]和sum[s2+abs(k-idx2)]，其中k为i个数中的根的下标(即i个数中的最小值)。
+
+SRM 675 Div1 Hard
+问能否构造出n(n<=50)个顶点和exactly有s(s<=1000)条长度为2的path的树。
+Solution：
+直接dp。dp[i,j,k]表示i个点有j个叶子长度为2的path条数为k是否可能。
