@@ -37,4 +37,4 @@ Solution：
 则从0开始bfs，找出所有len<=3n的环求gcd。
 
 SRM 685 Div1 Med(dfs+结论)
-SRM 695 Div1 Med
+SRM 695 Div1 Med(搜索)
