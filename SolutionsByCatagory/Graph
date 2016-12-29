@@ -10,3 +10,8 @@ Solution：
 条件是，任意两个点之间都有某一个或两个方向联通且0能到达任意一个点。
 
 SRM 687 Div1 Med(Gomory-Hu tree)
+
+SRM 699 Div2 Hard
+n(n<=100000)个点编号1-n，m(m<=500)条边，形如a[i]->b[i]。x->y有一条边当且仅当存在一个i，a[i]|x && b[i]|y。问S到T的最短路。
+Solution：
+就是找一条路径从S到T，问路径上边的条数最少。那么可以直接bfs，如果可以从边i走到边j，当且仅当lcm(b[i], a[j]) <= n。
