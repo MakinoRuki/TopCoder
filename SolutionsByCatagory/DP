@@ -193,3 +193,8 @@ Solution：
 对于每一位从a到z枚举，然后dp出与当前前缀match的string方案数。注意到这个集合生成方式实际上就是，从0到n-1地枚举s的每一位，
 选择把这一位从外往里地加入到t的两侧。比如t的前缀为i，后缀为j，那么s的第i+j+1个字符就可以加到前面的第i+1个和倒数的第j+1个。
 因此dp[i,j]表示用了s的前i个字符，其中前缀长度为j的方案数。那么第i+1个字符可以放到j+1或者n-(i-j)个位置，但是要注意与前面枚举的前缀match。
+
+SRM 702 Div1 Med
+问长度为n(n<=150)的string，good的子序列排第k大的是谁。good定义：()或者(SSS),其中S为good string。
+Solution：
+首先dp出来长度为x的good string方案数，发现总数并不多(total 9526 when n <= 150)。然后暴力生成暴力check是否匹配即可。
