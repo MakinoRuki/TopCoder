@@ -199,6 +199,8 @@ SRM 702 Div1 Med
 Solution：
 首先dp出来长度为x的good string方案数，发现总数并不多(total 9526 when n <= 150)。然后暴力生成暴力check是否匹配即可。
 
+SRM 703 Div1 Med
+
 SRM 704 Div2 Hard
 长度为n(n<=10^9)的序列，每个数[0,k)(k<=100)。问多少序列满足乘积mod k = v。结果mod 1e9+7。
 Solution：
