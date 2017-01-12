@@ -211,3 +211,5 @@ SRM 603 Div1 Med
 Solution：
 首先满足条件的A和B必然是形如(x+y,y+x)的形式，即B是A的一个rotation。那么看一个A会有多少个不同的rotation，这取决于A中最长的循环节长度。
 对于循环节长度为d的A，方案数有f[d]*d。那么可以dp这个f[d]，但是要注意减掉d' < d && d' | d的f[d']。最终求出g[d]，即以d为最长循环节的串的方案数。
+
+SRM 604 Div1 Med
