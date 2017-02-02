@@ -1,3 +1,5 @@
+SRM 608 Div1 Med
+
 SRM 658 Div2 Hard
 n*n(n<=50)的矩阵，每个格子是O，E，？。mat[i,j]='O'表示ij之间奇数条边，mat[i,j]='E'表示ij之间偶数条边，mat[i,j]='?'表示不确定。
 要求给出一棵树，满足矩阵里的条件。
