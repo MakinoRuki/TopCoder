@@ -22,15 +22,12 @@ class PalindromicSubseq {
 						if (s[i - 1] == s[j - 1]) {
 							dp[i][j] = 1LL;
 						}
-						dp_in[i][j] = (dp_in[i + 1][j] + dp_in[i][j - 1]) % mod;
-						dp_in[i][j] = (dp_in[i][j] - dp_in[i + 1][j - 1] + mod) % mod;
-						dp_in[i][j] = (dp_in[i][j] + dp[i][j]) % mod;
 					} else {
 						if (s[i - 1] == s[j - 1]) dp[i][j] = dp_in[i + 1][j - 1] + 1LL;
-						dp_in[i][j] = (dp_in[i + 1][j] + dp_in[i][j - 1]) % mod;
-						dp_in[i][j] = (dp_in[i][j] - dp_in[i + 1][j - 1] + mod) % mod;
-						dp_in[i][j] = (dp_in[i][j] + dp[i][j]) % mod;
 					}
+					dp_in[i][j] = (dp_in[i + 1][j] + dp_in[i][j - 1]) % mod;
+					dp_in[i][j] = (dp_in[i][j] - dp_in[i + 1][j - 1] + mod) % mod;
+					dp_in[i][j] = (dp_in[i][j] + dp[i][j]) % mod;
 				}
 			}
 			memset(dp_out, 0LL, sizeof(dp_out));
@@ -50,11 +47,11 @@ class PalindromicSubseq {
 			for (int i = 1; i <= n; ++i) {
 				ll res = 0LL;
 				for (int j = 1; j <= n; ++j) {
-					if (i == 1) cout<<i<<" "<<j<<" "<<dp_in[i][j]<<" "<<dp_out[i][j]<<endl;
-					if (j <= i) res = (res + dp_in[j][i] * dp_out[j - 1][i + 1] % mod) % mod;
-					else res = (res + dp_in[i][j] * dp_out[i - 1][j + 1] % mod) % mod;
+				//	if (i == 1) cout<<i<<" "<<j<<" "<<dp_in[i][j]<<" "<<dp_out[i][j]<<endl;
+					if (j <= i) res = (res + dp[j][i] * dp_out[j - 1][i + 1] % mod) % mod;
+					else res = (res + dp[i][j] * dp_out[i - 1][j + 1] % mod) % mod;
 				}
-				cout<<i<<" "<<res<<endl;
+			//	cout<<i<<" "<<res<<endl;
 				ans ^= (res * i % mod);
 			}
 			return ans;
