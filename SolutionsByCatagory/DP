@@ -228,3 +228,13 @@ dp。假设我们从小到大把数字分组，那么就是要记下放到第i�
 方案数。因为k<=10，所以复杂度是n^2*(2^k)。需要特别处理k=1的情况。
 
 SRM 708 Div1 Med
+长度为n(n<=3000)的小写字母序列，对于每个i，求出保留s[i]的情况下，挖掉s中其他位置字母后得到回文子序列的方案数f(i)，mod 1e9+7后，将n个值异或。
+Solution：
+对于每个i，枚举它和s[j]对应。那么所求f(i)即为sigma_j(dp_in(i,j)*dp_out_sum(i-1,j+1))。其中dp_in(i,j)为s[i,j]之间包含s[i],s[j]
+且s[i]对应于s[j],的合法回文子序列方案数；dp_out_sum(i-1,j+1)为s[0,i-1]中子序列和s[j+1,n-1]中子序列长度相同且互为回文的子序列方案数。
+转移为
+dp_in(i,j)={if s[i]==s[j] : dp_in_sum(i+1,j-1)+1 else : 0}
+dp_in_sum(i,j) = dp_in_sum(i,j-1) + dp_in_sum(i+1, j) - dp_in_sum(i+1, j-1) + dp_in(i,j)
+dp_out(i,j)={if s[i] == s[j] : dp_out_sum(i-1, j+1) else : 0}
+dp_out_sum(i,j) = dp_out_sum(i-1,j) + dp_out_sum(i, j+1) - dp_out_sum(i-1,j+1) + dp_out(i,j)。
+其中dp_in_sum(i,j)为s[i,j]所有合法回文子序列。dp_out(i,j)为s[0,i]中子序列和s[j,n-1]中子序列长度相同且包含s[i]和s[j]且互为回文的子序列方案数。
