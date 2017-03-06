@@ -240,3 +240,4 @@ dp_out_sum(i,j) = dp_out_sum(i-1,j) + dp_out_sum(i, j+1) - dp_out_sum(i-1,j+1) +
 其中dp_in_sum(i,j)为s[i,j]所有合法回文子序列。dp_out(i,j)为s[0,i]中子序列和s[j,n-1]中子序列长度相同且包含s[i]和s[j]且互为回文的子序列方案数。
 
 SRM 709 Div1 Easy
+SRM 709 Div1 Med
