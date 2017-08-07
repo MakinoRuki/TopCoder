@@ -26,6 +26,7 @@ class ScoresSequence {
 				for (int j = 0; j < rank[i].first; ++j) {
 					g[rank[i].second][rank[j].second] = 1;
 				}
+				// 除了i的出边，剩下的必然全是入边的关系。因为总共n-1条边，包含两种关系。
 				for (int j = rank[i].first; j < i; ++j) {
 					g[rank[j].second][rank[i].second] = 1;
 					rank[j].first--;
