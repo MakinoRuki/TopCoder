@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#define N 1002
+using namespace std;
+class TwoDogsOnATree {
+  public:
+    int n;
+    int val[N];
+    int dp[5][1025];
+    int maximalXorSum(vector<int> par, vector<int> w) {
+      n = w.size();
+      memset(dp, 0, sizeof(dp));
+      memset(val, 0, sizeof(val));
+      for (int i = 0; i < 4; ++i) {
+        dp[i][0] = 1;
+      }
+      for (int i = 1; i < n; ++i) {
+        // Xor sum of path(x, y) = Xor(0, x) ^ Xor(0, y).
+        val[i] = val[par[i]] ^ w[i - 1];
+        for (int j = 0; j < 4; ++j) {
+          for (int k = 0; k < 1024; ++k) {
+            if (dp[j][k]) {
+              dp[j + 1][k ^ val[i]] |= 1;
+            }
+          }
+        }
+      }
+      for (int i = 1023; i >= 0; --i) {
+        if (dp[4][i]) return i;
+      }
+    }
+};
