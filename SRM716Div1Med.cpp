@@ -57,8 +57,10 @@ class JumpDistancesOnTree {
       }
       for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-          if (i != j && vis[i] && vis[j]) {
-            st.erase(dis[i][j]);
+          if (vis[i] && vis[j]) {
+          	if (st.find(dis[i][j]) != st.end()) {
+            	st.erase(dis[i][j]);
+            }
           }
         }
       }
