@@ -289,3 +289,4 @@ num'[i,j]=num[i,j-k]*num[i',k]
 sum'[i,j]=sum[i,j-k]*num[i',k]+sum[i',k]*num[i,j-k]
 sum2'[i,j]=sum2[i,j-k]*num[i',k]+sum2[i',k]*num[i,j-k]
 必要的奇怪trick来修正精度：
+开始时所有权值w[i]要减掉sum(w[i])/n，也就是所有点权w[i]的均值。
