@@ -276,4 +276,16 @@ dp[i+1, ...]的值时，按照树的dfs逆序自底向上，一边计算dp值一
 因此要在lca[u,v]处减掉两遍的dp[i,k]。
 
 SRM 712 Div1 Med / Div2 Hard
-n(n<=50)个顶点的一棵树T，每个点有个点权w[i]。求T的所有子树T'
+n(n<=50)个顶点的一棵树T，每个点有个点权w[i]。求T的所有子树T'的Var(T')值的average。
+Var(T')定义: ((x1-E(T'))^2 + (x2-E(T'))^2 + ... + (xn-E(T'))^2)/n。其中n为T'中顶点个数。
+Solution:
+对于一棵子树T',Var(T')推一下可以发现其实就是(x1^2+...+xn^2)/n-(x1+...+xn)^2/n/n。
+那么我们可以dp，f[i,j]表示以i为顶点且包含i的且有j个顶点的子树Var值的sum。
+num[i,j]表示以i为根且有j个顶点的子树的方案数。sum[i,j]表示以i为根且有j个顶点的子树的w值和。
+sum2[i,j]表示平方和。sum3[i,j]表示和平方。
+假设枚举到i的儿子i'，有k个儿子。
+转移为:
+num'[i,j]=num[i,j-k]*num[i',k]
+sum'[i,j]=sum[i,j-k]*num[i',k]+sum[i',k]*num[i,j-k]
+sum2'[i,j]=sum2[i,j-k]*num[i',k]+sum2[i',k]*num[i,j-k]
+必要的奇怪trick来修正精度：
