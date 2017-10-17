@@ -292,4 +292,17 @@ sum2'[i,j]=sum2[i,j-k]*num[i',k]+sum2[i',k]*num[i,j-k]
 开始时所有权值w[i]要减掉sum(w[i])/n，也就是所有点权w[i]的均值。
 
 SRM 713 Div1 Med / Div2 Hard
-n(n<=14)个
+n(n<=14)个顶点的无向图，按照下列程序遍历之后得到一个[1-n]的排列。问不同排列方案数。
+--------------------------
+|root=random(1,n);       |
+|list={}                 |
+|dfs(root):              |
+|  add root to list      |
+|  for (v:edges[root])   |
+|    if (v not in list)  |
+|      dfs(v)            |
+--------------------------
+ Solution:
+ 记忆化dp。f[i,j]表示要遍历当前点集i，以j为root的方案数。
+ 那么就寻找点集i去掉j之后所有的联通块，设为components。
+ 枚举每个components，枚举每个
