@@ -5,3 +5,23 @@ Solution：
 一个选手假设排名第x，那么他的得分x^2就是所有unordered pair(i,j)的个数和，其中选手i和j都排在他前面。排在他前面的选手就看a值和他不同的最高位，可以按照
 这个把所有选手分组，分成m组。那么对于他来说答案就是(c1^2+c2^2+...+cm^2)*2^(m-1)+(c1*(n-1-c1)+...+cm*(n-1-cm))*2^(m-2)。
 而对于ci的统计，可以用trie树，使用O(nm)的时间和空间解决。
+
+SRM 715 Div2 Hard
+给定程序遍历一棵树：
+--------------------------------------------------------
+|dfs(cur, order):                                      |
+|  if (order == "pre"):                                |
+|    return v.label+dfs(v.left, s[0])+dfs(v.right,s[1])|
+|  if (order == "in"):                                 |
+|    return dfs(v.left, s[2])+v.label+dfs(v.right,s[3])|
+|  if (order == "post"):                               |
+|    return dfs(v.left,s[4])+dfs(v.right,s[5])+v.label |
+--------------------------------------------------------
+给出三个序列：
+a1=dfs(root,"pre")
+a2=dfs(root,"in")
+a3=dfs(root,"post")
+问存不存在一棵n(n<=50)个顶点的树，按照上述程序遍历能得到这三个序列。
+其中s[0],s[2],s[4]保证cover了pre,in,post;s[1],s[3],s[5]同样。
+Solution:
+直接dfs。用pre序列找出根，in序列划分左右子树。由于s序列的给定条件，保证了子树一定有三种遍历方式。
