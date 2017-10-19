@@ -51,11 +51,8 @@ class ClassicTowers {
 			memset(maxv, -1, sizeof(maxv));
 			memset(minv, -1, sizeof(minv));
 			if (res.size() > n) res = find(count[0], count[1], count[2] - 1, "A", "B", "C", k) + "C";
-			if (res.size() > n) res = find(count[1], count[0], count[2] - 1, "B", "A", "C", k) + "C";
 			if (res.size() > n) res = find(count[0], count[2], count[1] - 1, "A", "C", "B", k) + "B";
-			if (res.size() > n) res = find(count[2], count[0], count[1] - 1, "C", "A", "B", k) + "B";
 			if (res.size() > n) res = find(count[1], count[2], count[0] - 1, "B", "C", "A", k) + "A";
-			if (res.size() > n) res = find(count[2], count[1], count[0] - 1, "C", "B", "A", k) + "A";
 			if (res.size() > n) res = "";
 			return res;
 		}
