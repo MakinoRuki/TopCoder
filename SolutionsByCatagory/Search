@@ -38,3 +38,9 @@ Solution：
 
 SRM 685 Div1 Med(dfs+结论)
 SRM 695 Div1 Med(搜索)
+
+SRM 716 Div1 Med / Div2 Hard
+n(n<=2000)个顶点的一棵树，从0开始，每次选一个点走过去，一共选m个。把m个travel距离记下来，放到set里，记为D(|D|<=2000)。
+问是否存在一个长m的travel路径，能得到D。
+Solution：
+从0开始bfs。只遍历距离在D中的顶点。然后两两check遍历过的顶点，看是否能cover到D中的所有距离。
