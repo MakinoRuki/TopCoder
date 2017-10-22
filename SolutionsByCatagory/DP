@@ -331,3 +331,7 @@ Solution:
 maxv[c1,c2,c3]表示最大步数，minv[c1,c2,c3]表示最小步数。
 
 SRM 717 Div1 Med / Div2 Hard
+给定m(m<=10^5)，D[i]={1,2,...,n+i}(1<=i<=m)的排列中[1,i]不在自己位置上的方案数。
+求B[i]=D[i]/n!的异或和。其中(n<=10^9)。
+Solution：
+dp。D[i]=D[i-1]*(n+i-1)+D[i-2]*(i-1)。
