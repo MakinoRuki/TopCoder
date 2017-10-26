@@ -224,4 +224,4 @@ SRM 719 Div2 Hard
 n(n<=1000)个顶点的一棵树，每条边上有个权重。找两条没有重合边的path，边权权重xor值最大。
 Solution：
 1) 相当于任选2对顶点，path的xor值xor。可以预处理xor值为x的pair。然后枚举x1,x2。
-2) dp。f[i,j]表示
+2) dp。f[i,j]表示选了i个顶点，xor值为j的方案是否可行。然后自顶向下dp。
