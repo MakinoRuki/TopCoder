@@ -1,0 +1,37 @@
+class MulticoreProcessing {
+	public:
+	ll hoge(ll J,ll P,ll S,ll C) {
+		ll mi=1LL<<60;
+		J=(J+S-1)/S;
+		ll L=1;
+		ll R=C;
+		if(P==0) {
+			L=R=C;
+		}
+		else {
+			while(R-L>=10) {
+				ll m1=(L*2+R)/3;
+				ll m2=(L+R*2)/3;
+				ll v1=(m1-1)*P+(J+m1-1)/m1;
+				ll v2=(m2-1)*P+(J+m2-1)/m2;
+				mi=min({mi,v1,v2});
+				if(v1<v2) R=m2;
+				if(v1>v2) L=m1;
+				if(v1==v2) L=m1,R=m2;
+			}
+		}
+		for(ll i=max(1LL,L-100000);i<=min(C,R+100000);i++) {
+			mi=min(mi,(i-1)*P+(J+i-1)/i);
+		}
+		
+		return mi;
+		
+	}
+	
+	long long fastestTime(long long jobLength, int corePenalty, vector <int> speed, vector <int> cores) {
+		ll mi=1LL<<60;
+		int i;
+		FOR(i,cores.size()) mi=min(mi,hoge(jobLength,corePenalty,speed[i],cores[i]));
+		return mi;
+	}
+}
