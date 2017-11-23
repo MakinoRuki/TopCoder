@@ -361,3 +361,14 @@ dpdown[i,s]表示以i为根子树，i为大写或者小写，子树中大写或�
 dplev[i]=dpup[0,0]+dpup[0,1]-mulup[j]*dplev[j](0<=j<i)。
 其中mulup[j]为第i层全为小写的情况下，导致第j层全为小写的方案数。mulup[j]=dpup[k,0]的乘积，lev[k]=j。
 最终答案ans=dpdown[0,0]+dpdown[0,1]-muldown[i]*dplev[i](0<=i<=maxLevel)。其中muldown[i]=dpdown[k,0]的乘积，lev[k]=i。
+
+SRM 723 Div1 Med
+给出长度为n(n<=100)的含b,u,f,a,l,o,?的string。问存在多少种方案，使得?填好之后的string是几个"buffalo"的interleave。
+Solution：
+dp。dp[a,b,c,d,e,f]表示前缀"","b","bu / buf", "buff","buffa","buffal"分别有a,b,c,d,e,f个时的方案数。
+特别注意c，也就是"bu / buf"的前缀。我们都用c来表示。因此c的上界要乘2。
+转移的时候：
+b->bu: c+=2
+bu->buf: c-=1
+buf->buff: c-=1,d+1
+因此如果此时c为奇数，我们知道存在"buf"可以转为"buff"；否则我们知道都是"bu"，需要先转为"buf"。
