@@ -255,3 +255,9 @@ SRM 723 Div2 Hard
 十字形摆放5个n*n(n<=10^9)的格子。问两两之间曼哈顿距离的和是多少。
 Solution：
 可拆分成deltaX和deltaY。对于deltaX，可以以列为单位看；对于deltaY，可以以行为单位看。
+
+SRM 724 Div1 Easy
+n(n<=50)个数，给出pairOr[i] = x[i] or x[i + 1], pairSum[i] = x[i] + x[i + 1]。问存不存在合法的序列x。
+Solution：
+观察可得pairSum[i]-pairOr[i]所得即是所有x[i]和x[i+1]都为1的位,pairOr[i]=0即为x[i]和x[i+1]都为0的位。
+因此可以拆位来看，确定哪些位是1哪些是0。之后再根据已经确定的位来check那些不确定的位/x[i]和x[i+1]中有且仅有一个是1的位。
