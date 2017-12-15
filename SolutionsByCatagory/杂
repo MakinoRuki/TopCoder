@@ -261,3 +261,19 @@ n(n<=50)个数，给出pairOr[i] = x[i] or x[i + 1], pairSum[i] = x[i] + x[i + 1
 Solution：
 观察可得pairSum[i]-pairOr[i]所得即是所有x[i]和x[i+1]都为1的位,pairOr[i]=0即为x[i]和x[i+1]都为0的位。
 因此可以拆位来看，确定哪些位是1哪些是0。之后再根据已经确定的位来check那些不确定的位/x[i]和x[i+1]中有且仅有一个是1的位。
+
+SRM 724 Div1 Med
+给一个n*m(n,m<=50)的目标矩阵，由.和#构成。可以执行四种操作up,down,left,right。每个操作意味着向该方向推动所有#，
+到不能再推的位置(到了边界或者卡到另一个#)。问可以得到目标矩阵的初始矩阵方案数mod 1e9+7。
+Solution：
+几个观察：
+1.每个操作有意义的只有第一次执行。
+2.如果某个#在某个方向上有一个相邻的"."，说明不能执行该方向上的对应操作。
+3.分几种情况讨论：
+四个方向都不能执行，则为1；
+只有一个方向上可以执行(比如up/down)，则为C(n,c1) * C(n,c2) * ... C(n, cm)；
+两个方向上都可以执行(比如up/left)，则分为up->left和left->up，那么设有x个#的列有numx个，
+则为C(m,num1)*C(m-num1,num2)*...*C(numx,numx)*C(n,c1)*C(n,c2)*...*C(n,cm) + 
+C(n,num'1)*C(n-num'1,num'2)*...*C(num'x,num'x)*C(m,r1)*C(m,r2)*...*C(m,rn)
+然后减掉既能up->left又能left->up得到的方案数，即：
+C(m,num1)*...*C(numx,numx)*C(n,num'1)*...*C(num'x,num'x)。
