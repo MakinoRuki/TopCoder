@@ -18,7 +18,8 @@ class GravityPuzzle {
 			m = board[0].size();
 			memset(col, 0, sizeof(col));
 			memset(row, 0, sizeof(row));
-			ll ans = 1LL;
+			ll ans = 0LL;
+			ll res = 1LL;
 			memset(comb, 0LL, sizeof(comb));
 			for (int i = 0; i <= max(n, m); ++i) {
 				comb[i][0] = 1LL;
@@ -54,30 +55,38 @@ class GravityPuzzle {
 				col[sum]++;
 			}
 			if (!up && !down && !left && !right) return 1;
-			ll res = 1LL;
+			ll tmpans = 1LL;
 			if (up || down) {
-				for (int j = 0; j <= n; ++j) {
-					if (col[j]) {
-						ans = ans * comb[m][col[j]] % mod;
-						res = res * comb[m][col[j]] % mod;
+				tmpans = 1LL;
+				for (int j = 0; j < m; ++j) {
+					tmpans = (tmpans * comb[n][colcnt[j]]) % mod;
+				}
+				if (left || right) {
+					int tm = m;
+					for (int j = 1; j <= n; ++j) {
+						tmpans = (tmpans * comb[tm][col[j]]) % mod;
+						res = res * comb[tm][col[j]] % mod;
+						tm -= col[j];
 					}
 				}
-				for (int j = 0; j < m; ++j) {
-					ans = ans * comb[n][colcnt[j]] % mod;
-				}
+				ans = (ans + tmpans) % mod;
 			}
 			if (left || right) {
-				for (int i = 0; i <= m; ++i) {
-					if (row[i]) {
-						ans = ans * comb[n][row[i]] % mod;
-						res = res * comb[n][row[i]] % mod;
+				tmpans = 1LL;
+				for (int i = 0; i < n; ++i) {
+					tmpans = tmpans * comb[m][rowcnt[i]] % mod;
+				}
+				if (up || down) {
+					int tn = n;
+					for (int i = 1; i <= m; ++i) {
+						tmpans = tmpans * comb[tn][row[i]] % mod;
+						res = res * comb[tn][row[i]] % mod;
+						tn -= row[i];
 					}
 				}
-				for (int i = 0; i < n; ++i) {
-					ans = ans * comb[m][rowcnt[i]] % mod;
-				}
+				ans = (ans + tmpans) % mod;
 			}
-			if ((left || right) && (up || down)) {
+			if ((up || down) && (left || right)) {
 				ans = (ans - res + mod) % mod;
 			}
 			return ans;
