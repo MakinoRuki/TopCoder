@@ -388,3 +388,7 @@ Solution：
 按照b[i]值排序。dp[i,j]表示到i为止，有入度的点集合为j的方案数。然后可以预处理i+1顶点儿子集合k，满足!(j&k)时转移。
 
 SRM 726 Div2 Hard
+有n(n<=50)个task，每个task有start和finish日期，且<=15。每一天只能做一个task，每个task也只要一天完成。问可以做的task的set有多少种。
+Solution：
+把task按照{finish, start}从小到大排序，然后状压dp。
+dp[i,j]表示前i个task，占用的日期集合是j的选集方案数。那么转移的时候，为了防止重复，对于第i个task，只能放在[start, finish]的第一个合法日期上。
