@@ -5,56 +5,62 @@
 #include <algorithm>
 #define N 1002
 using namespace std;
-int mat[N][N];
 class BearSpans {
 	public:
-		vector<int> findAnyGraph (int n, int m, int k) {
-			vector<int> roots;
-			roots.clear();
-			for (int i = 0; i < n; ++i) {
-				roots.push_back(i);
+		vector<int> ans;
+		bool mat[N][N];
+		vector<int> findAnyGraph(int n, int m, int k) {
+			ans.clear();
+			vector<int> pts[2];
+			pts[0].clear();
+			for (int i = 1; i <= n; ++i) {
+				pts[0].push_back(i);
 			}
-			memset(mat, 0, sizeof(mat));
-			int cnt = 0;
-			for (int i = 1; i < k; ++i) {
-				if (roots.size() <= 1) {
-					return {-1};
-				}
-				vector<int> tmp;
-				tmp.clear();
-				for (int j = 0; j < roots.size(); j += 2) {
-					if (j + 1 >= roots.size()) break;
-					int u = roots[j];
-					int v = roots[j + 1];
-					mat[u][v] = mat[v][u] = ++cnt;
-					tmp.push_back(u);
-				}
-				if (roots.size() & 1) {
-					int u = roots[roots.size() - 2];
-					int v = roots[roots.size() - 1];
-					mat[u][v] = mat[v][u] = ++cnt;
-				}
-				roots = tmp;
+			memset(mat, false, sizeof(mat));
+			int idx = 0;
+			for (int i = 1; i <= k; ++i) {
+				int now = i & 1;
+				pts[now].clear();
+				if (pts[now ^ 1].size() == 1) return vector<int>{-1};
+				if (idx >= m) return vector<int>{-1};
+				if (i < k) {
+					for (int j = 0; j < pts[now ^ 1].size(); j += 2) {
+						++idx;
+						if (j < pts[now ^ 1].size() - 1) {
+							int u = pts[now ^ 1][j];
+							int v = pts[now ^ 1][j + 1];
+							ans.push_back(u);
+							ans.push_back(v);
+							pts[now].push_back(u);
+							mat[u][v] = mat[v][u] = true;
+						} else {
+							int u = pts[now ^ 1][0];
+							int v = pts[now ^ 1][j];
+							ans.push_back(u);
+							ans.push_back(v);
+							mat[v][u] = mat[u][v] = true;
+						}	
+					}
+				} else {
+					for (int j = 1; j < pts[now ^ 1].size(); ++j) {
+						++idx;
+						int u = pts[now ^ 1][j - 1];
+						int v = pts[now ^ 1][j];
+						ans.push_back(u);
+						ans.push_back(v);
+						mat[u][v] = mat[v][u] = true;
+					}
+				}	
 			}
-			if (roots.size() <= 1) return {-1};
-			for (int i = 1; i < roots.size(); ++i) {
-				int u = roots[i - 1];
-				int v = roots[i];
-				mat[u][v] = mat[v][u] = ++cnt;
-			}
-			vector<int> ans (2 * m, 0);
-			for (int i = 0; i < n; ++i) {
-				for (int j = i + 1; j < n; ++j) {
-					if (mat[i][j]) {
-						int num = mat[i][j];
-						ans[2 * num - 2] = i + 1;
-						ans[2 * num - 1] = j + 1;
-					} else {
-						++cnt;
-						if (cnt > m) continue;
-						mat[i][j] = mat[j][i] = cnt;
-						ans[2 * cnt - 2] = i + 1;
-						ans[2 * cnt - 1] = j + 1;
+			if (idx < m) {
+				for (int i = 1; i <= n; ++i) {
+					for (int j = 1; j <= n; ++j) {
+						if (i == j || mat[i][j]) continue;
+						++idx;
+						if (idx > m) continue;
+						ans.push_back(i);
+						ans.push_back(j);
+						mat[i][j] = mat[j][i] = true;
 					}
 				}
 			}
