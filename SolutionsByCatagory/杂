@@ -277,3 +277,10 @@ Solution：
 C(n,num'1)*C(n-num'1,num'2)*...*C(num'x,num'x)*C(m,r1)*C(m,r2)*...*C(m,rn)
 然后减掉既能up->left又能left->up得到的方案数，即：
 C(m,num1)*...*C(numx,numx)*C(n,num'1)*...*C(num'x,num'x)。
+
+SRM 727 Div1 Med
+给一个board，从中选出一个边和board的边平行的grid，全部mark成'#'。board剩余部分是'.'。然后按照行把这些string拼接到一起得到一个大的string，
+给出这个string的subsequence，问最少可能missing的cell有多少。
+Solution：
+假设一行是x个'.'+y个'#'+z个'.'。枚举xyz(x,z <= max{.}, y<=max{#})，然后模拟去把有多少行取出来。
+非常考coding和实现的一道题。
