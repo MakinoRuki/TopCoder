@@ -25,3 +25,5 @@ a3=dfs(root,"post")
 其中s[0],s[2],s[4]保证cover了pre,in,post;s[1],s[3],s[5]同样。
 Solution:
 直接dfs。用pre序列找出根，in序列划分左右子树。由于s序列的给定条件，保证了子树一定有三种遍历方式。
+
+TCO18 R2C Med
