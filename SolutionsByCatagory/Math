@@ -108,3 +108,5 @@ SRM 734 Div1 Easy
 Solution：
 枚举a，然后分解a的时候打表常优。
 table[x]表示要分解x，下一个最小的素因子是多少。这个可以筛法求出。
+
+TCO18 R2C Hard
