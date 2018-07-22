@@ -110,3 +110,7 @@ Solution：
 table[x]表示要分解x，下一个最小的素因子是多少。这个可以筛法求出。
 
 TCO18 R2C Hard
+
+TCO18 R3B Med(概率&期望)
+Solution1(DP):
+Solution2(Math):
