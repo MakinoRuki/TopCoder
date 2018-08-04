@@ -21,9 +21,10 @@ class Alchemy {
 			vector<int> pg;
 			pg.clear();
 			memset(dp, false, sizeof(dp));
+			dp[0][0] = true;
 			for (int i = 0; i < n; ++i) {
 				if (lo[i] == 0) {
-					if (go[i] == goal) return "YES";
+					if (go[i] == goal) return "Possible";
 					pg.push_back(go[i]);
 				} else {
 					dp[lo[i] - 1][go[i]] = true;
@@ -43,49 +44,49 @@ class Alchemy {
 					a.push_back(i);
 				}
 			}
-			if (a.empty()) return "NO";
+			if (a.empty()) return "Impossible";
 			int mod = a[0];
 			a.erase(a.begin());
 			memset(e, -1, sizeof(e));
 			for (int i = 0; i < pg.size(); ++i) {
 				if (goal >= pg[i]) {
-					int r = (goal - pg[i]) % mod;
-					e[r] = max(e[r], goal - pg[i]);
+					ll r = (goal - (ll)pg[i]) % (ll)mod;
+					e[r] = max(e[r], (ll)(goal - pg[i]));
 				}
 			}
-			int g = a[0];
-			for (int i = 1; i < a.size(); ++i) {
+			int g = mod;
+			for (int i = 0; i < a.size(); ++i) {
 				g = __gcd(g, a[i]);
 			}
 			bool ok = false;
 			for (int i = 0; i <= mod; i += g) {
 				if (e[i] >= 0) ok = true;
 			}
-			if (!ok) return "NO";
+			if (!ok) return "Impossible";
 			set<pli> q;
 			q.clear();
 			for (int i = 1; i < M; ++i) {
 				dis[i] = inf;
 			}
 			dis[0] = 0;
-			if (e[0] >= dis[0]) return "YES";
+			if (e[0] >= dis[0]) return "Possible";
 			q.insert(mp(dis[0], 0));
 			while(!q.empty()) {
 				pli cur = *q.begin();
 				q.erase(cur);
 				ll d = cur.first;
 				int idx = cur.second;
-				if (d > goal) return "NO";
+				if (d > goal) return "Impossible";
 				for (int i = 0; i < a.size(); ++i) {
 					int nxt = (idx + a[i]) % mod;
-					if (dis[nxt] > dis[idx] + a[i]) {
+					if (dis[nxt] > dis[idx] + (ll)a[i]) {
 						q.erase(mp(dis[nxt], nxt));
-						dis[nxt] = dis[idx] + a[i];
-						if (dis[nxt] <= e[nxt]) return "YES";
+						dis[nxt] = dis[idx] + (ll)a[i];
+						if (dis[nxt] <= e[nxt]) return "Possible";
 						q.insert(mp(dis[nxt], nxt));
 					}
 				}
 			}
-			return "NO";
+			return "Impossible";
 		}
 };
