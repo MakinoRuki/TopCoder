@@ -328,3 +328,13 @@ Solution:
 那么就从右往左扫一遍，维护一个双端队列以及0和负数的个数。
 
 TCO18 R3B Hard
+有一个leadCoin，有n(n<=50)个操作，每个操作消耗1个leadCoin产生a[i]个leadCoin和b[i]个goldCoin。
+问执行任意组合操作多次之后是否能得到0个leadCoin和goal(goal<=10^18)个goldCoin。
+Solution:
+首先必然是执行多次操作组合之后保持leadCoin不变，goldCoin增加。最后再来一次a[i]=0&&b[i]>0的操作，得到goal。
+可以先dp出leadCoin增加0，goldCoin可能增加多少。
+把操作分成a[i]=0的和a[i]>0的。用a[i]>0的操作初始化dp[a[i],b[i]]=true。
+然后用a[i]=0的b[i]去背包dp，得到为true的dp[0,c]。
+那么c1*x1+c2*x2+...+cn*xn=goal-b[i]。
+这个式子要有解，也就是c2*x2+...+cn*xn=(goal-b[i])%c1要有解。
+但是判断的时候要使用gcd(c1, c2, ..., cn)|。
