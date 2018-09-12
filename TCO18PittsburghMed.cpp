@@ -41,11 +41,6 @@ class Avoid9 {
 						dp[now ^ 1][j | (1<<r)][pre[j][r] | k] = max(dp[now ^ 1][j | (1<<r)][pre[j][r] | k], dp[now][j][k] + 1);
 					}
 				}
-		//		for (int j = 0; j < (1<<9); ++j) {
-			//		for (int k = 0; k < (1<<9); ++k) {
-			//			if (dp[now ^ 1][j][k] >= 0) cout<<i<<" "<<j<<" "<<k<<" "<<dp[now ^ 1][j][k]<<endl;
-			//		}
-			//	}
 			}
 			now = (n & 1);
 			int ans = 0;
