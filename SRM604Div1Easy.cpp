@@ -24,8 +24,8 @@ public:
 		}
 	}
 	string ableToGet(int x, int y) {
-    x = abs(x);
-    y = abs(y);
+		x = abs(x);
+		y = abs(y);
 		memset(pwx, 0, sizeof(pwx));
 		memset(pwy, 0, sizeof(pwy));
 		int mx = -1, my = -1;
