@@ -1,0 +1,40 @@
+#include <iostream>
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+#define N 102
+using namespace std;
+#define inf 1000000000
+class AlienAndHamburgers {
+public:
+	int n;
+	int val[N];
+	int getNumber(vector<int> type, vector<int> taste) {
+		for (int i = 1; i <= 100; ++i) {
+			val[i] = -inf;
+		}
+		for (int i = 0; i < n; ++i) {
+			int t = type[i];
+			int v = taste[i];
+			if (v >= 0) {
+				if (val[t] < 0) val[t] = v;
+				else val[t] += v;
+			} else {
+				if (val[t] < 0) val[t] = max(val[t], v);
+			}
+		}
+		vector<int> rks;
+		rks.clear();
+		for (int i = 1; i <= 100; ++i) {
+			if (val[i] > -inf) rks.push_back(val[i]);
+		}
+		sort(rks.begin(), rks.end());
+		int ans = 0;
+		int sum = 0;
+		for (int i = 1; i <= rks.size(); ++i) {
+			sum += rks[size() - i];
+			if (sum * i > ans) ans = i * sum;
+		}
+		return ans;
+	}
+};
