@@ -23,6 +23,7 @@ class FoxConnection {
 				son[cur] += son[nxt];
 			}
 		}
+		// 左儿子右兄弟表示法 
 		int dfs2 (int cur, int par, int en, int fox) {
 		//	if (f && cur == 3 && par == 4 && en == 0 && fox == 0) cout<<"ok!"<<endl;
 			if (dp[cur][en][fox] >= 0) return dp[cur][en][fox];
