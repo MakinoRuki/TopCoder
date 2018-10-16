@@ -3,61 +3,41 @@
 #include <cstring>
 #include <vector>
 #include <algorithm>
-#define N 102
+#define N 52
 using namespace std;
 typedef long long ll;
 ll mod = 1000000007LL;
 class AlienAndSetDiv1 {
 	public:
-		ll dp[N][N][1<<11];
-		int n, k;
-		ll dfs (int cur, int more, int less) {
-		//	cout<<cur<<" "<<more<<" "<<less<<endl;
-			if (dp[cur][more][less] >= 0) return dp[cur][more][less];
-			if (cur > 2 * n) {
-				if (!more && !less) {
-					return 1;
-				}
-				return 0;
-			}
-			if (k == 1) {
-				if (!more && !less) {
-					dp[cur][more][less] = 2 * dfs(cur + 1, more + 1, less) % mod;
-				} else {
-					int res = 0;
-					if (more) res = (res + dfs(cur + 1, more - 1, less)) % mod;
-					res = (res + dfs(cur + 1, more + 1, less)) % mod;
-					dp[cur][more][less] = res;
-				}
-			} else {
-				if (!more && !less) {
-					dp[cur][more][less] = 2 * dfs(cur + 1, more, less | 1) % mod;
-				} else {
-					int res = 0;
-					if (more) {
-						int nmore = more - 1;
-						if ((1<<(k-2)) & less) {
-							nmore++;
+		int dp[N][N][1<<10];
+		void update(int & val, int add) {
+			val = (val + add) % mod;
+		}
+		int getNumber (int n, int k) {
+			k--;
+			memset(dp, 0LL, sizeof(dp));
+			dp[0][0][0] = 1;
+			int ans = 0;
+			for (int i = 0; i <= n; ++i) {
+				for (int j = 0; j <= n; ++j) {
+					for (int s = 0; s < (1<<k); ++s) {
+						if (dp[i][j][s] == 0) continue;
+						if (i == n && j == n) {
+							ans = (ans + dp[i][j][s]) % mod;
+							continue;
 						}
-						int nless = (less << 1) & ((1<<(k-1)) - 1);
-						res = (res + dfs(cur + 1, nmore, nless)) % mod;
+						int cnt1 = __builtin_popcount(s);
+						int cnt2 = min(i + j, k) - cnt1;
+					//	int cnt2 = k-cnt1;
+						if (i >= j || (j - i) > cnt2) {
+							update(dp[i+1][j][((s<<1)+1)&((1<<k)-1)], dp[i][j][s]);
+						}
+						if (j >= i || (i - j) > cnt1) {
+							update(dp[i][j+1][(s<<1)&((1<<k)-1)], dp[i][j][s]);
+						}
 					}
-					int nmore = more;
-					if ((1<<(k-2)) & less) {
-						nmore++;
-					}
-					int nless = (less << 1) & ((1<<(k-1)) - 1);
-					nless |= 1;
-					res = (res + dfs(cur + 1, nmore, nless)) % mod;
-					dp[cur][more][less] = res;
 				}
 			}
-			return dp[cur][more][less];
-		} 
-		int getNumber (int n1, int k1) {
-			n = n1;
-			k = k1;
-			memset(dp, -1, sizeof(dp));
-			return (int)(dfs(1, 0, 0));
+			return ans;
 		}
 };
