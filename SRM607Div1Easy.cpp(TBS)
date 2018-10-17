@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+using namespace std;
+class PalindromicSubstringsDiv1 {
+public:
+	int n;
+	string s;
+	double expectedPalindromes(vector<string> s1, vector<string> s2) {
+		s.clear();
+		for (int i = 0; i < s1.size(); ++i) {
+			s += s1[i];
+		}
+		for (int i = 0; i < s2.size(); ++i) {
+			s += s2[i];
+		}
+		n = s.size();
+		double ans = 0.0;
+		for (int i = 0; i < n; ++i) {
+			double res = 1.0;
+			ans += res;
+			for (int j = 1; i - j >= 0 && i - j < n; ++j) {
+				if (s[i - j] == '?' || s[i + j] == '?') {
+					res /= 26.0;
+					ans += res;
+				} else if (s[i - j] == s[i + j]) {
+					ans += res;
+				} else {
+					break;
+				}
+			}
+			res = 1.0;
+			for (int j = 0; i - j >= 0 && i + j + 1 < n; ++j) {
+				if (s[i - j] == '?' || s[i + 1 + j] == '?') {
+					res /= 26.0;
+					ans += res;
+				} else if (s[i - j] == s[i + 1 + j]) {
+					ans += res;
+				} else {
+					break;
+				}
+			}
+		}
+		return ans;
+	}
+};
