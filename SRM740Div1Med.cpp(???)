@@ -1,0 +1,70 @@
+#include <iostream>
+#include <cstdio>
+#include <vector>
+#include <algorithm>
+#define N 32
+using namespace std;
+class DieDesign {
+	public:
+		int n;
+		int dp[N][N];
+		vector<int> ans;
+		vector<int> design(vector<int> pips) {
+			sort(pips.begin(), pips.end());
+			int tot = 0;
+			ans.clear();
+			n = pips.size();
+			for (int i = 0; i < n; ++i) {
+				tot += pips[i];
+			}
+			for (int i = 0; i <= n; ++i) {
+				for (int j = 0; j <= n * n; ++j) {
+					dp[i][j] = inf;
+				}
+			}
+			dp[0][0] = 0;
+			for (int i = 0; i < n; ++i) {
+				for (int j = 0; j <= i * n; ++j) {
+					if (dp[i][j] < inf) {
+						dp[i + 1][j] = min(dp[i + 1][j], dp[i][j]);
+						for (int k = 1; k <= n;) {
+							while(k < n && pips[k] == pips[k - 1]) k++;
+							dp[i + 1][j + k] = min(dp[i + 1][j + k], dp[i][j] + pips[k - 1] + 1);
+							k++;
+						}
+					}
+				}
+			}
+			int maxv = 0;
+			for (int i = 0; i <= n * n; ++i) {
+				if (dp[n][i] <= tot) maxv = max(maxv, i);
+			}
+			int sum = 0;
+			for (int i = n; i >= 1; --i) {
+				for (int j = 0; j <= n; ++j) {
+					if (j == 0 && dp[i-1][maxv]==dp[i][maxv]) {
+						ans.push_back(0);
+						break;
+					} else if (j == n && dp[i-1][maxv-j]==dp[i][maxv]-pips[j - 1]-1) {
+						ans.push_back(pips[j-1]+1);
+						sum += pips[j-1]+1;
+						break;
+					} else {
+						if (j > 0 && j < n && pips[j - 1] == pips[j]) continue;
+						if (j > 0 && j < n && pips[j-1] != pips[j]) {
+							if (dp[i-1][maxv-j]==dp[i][maxv]-pips[j-1] -1) {
+								ans.push_back(pips[j-1]+1);
+								sum += pips[j-1]+1;
+								break;
+							}
+						}
+					} else {
+						continue;
+					}
+				}
+			}
+			int del = tot - sum;
+			if (del > 0) ans[0] += del;
+			reverse(ans.begin(), ans.end());
+			return ans;
+		}
