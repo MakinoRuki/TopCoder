@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <vector>
+#include <algorithm>
+#define N 100010
+using namespace std;
+typedef long long ll;
+class PackingBallsDiv1 {
+public:
+	int X[N];
+	int minPacks(int K, int A, int B, int C, int D) {
+		X[0] = A;
+		for (int i = 1; i < K; ++i) {
+			X[i] = ((ll)X[i - 1] * (ll)B + C) % D + 1;
+		}
+		ll ans = 0;
+		for (int i = 0; i < K; ++i) {
+			ans += X[i] / K;
+			X[i] %= K;
+		}
+		sort(X, X + K);
+		int i = 0;
+		while(i < K && X[i] == 0) i++;
+		ll res = K - i;
+		for (; i < K; ++i) {
+			res = min(res, X[i] + K - i);
+		}
+		ans += res;
+		return ans;
+	}
+};
