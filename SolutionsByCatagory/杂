@@ -29,7 +29,7 @@ Solution：
 尽量填满k个。所以先每种取尽可能多的k的倍数。然后排序。
 之后枚举分界点i，i之前的全部不一样，i之后的全部一样。
 
-SRM 611 Div1 Med
+SRM 611 Div1 Easy
 n(n<=50)个不同数字组成的数组A，m(m<=50)个不同数字组成的数组B。LCM(A)为由所有A子集的lcm组成的集合，LCM(B)为由所有B子集的lcm组成的集合。
 问LCM(A)是否等于LCM(B)。
 Solution：
