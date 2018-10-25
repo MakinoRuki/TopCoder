@@ -29,6 +29,14 @@ Solution：
 尽量填满k个。所以先每种取尽可能多的k的倍数。然后排序。
 之后枚举分界点i，i之前的全部不一样，i之后的全部一样。
 
+SRM 611 Div1 Med
+n(n<=50)个不同数字组成的数组A，m(m<=50)个不同数字组成的数组B。LCM(A)为由所有A子集的lcm组成的集合，LCM(B)为由所有B子集的lcm组成的集合。
+问LCM(A)是否等于LCM(B)。
+Solution：
+如果对于A中任意一个数字，B中都存在一个子集的lcm与它相等。则LCM(A)含于LCM(B)。反之，若A中存在一个数字，在B中不存在一个子集的lcm与它相等，
+那LCM(A)和LCM(B)必不相等。反之亦然。
+那么就枚举A中每一数字，看B中所有能整除这个数字的元素的lcm是否与这个数字相等。对B同样处理。
+
 SRM 647 Div1 Easy
 给10^5个building设定高度，满足building[1]=0，相邻两个building高度delta<=1，所有高度非负数。
 且满足，给定x(size<=50)和t，building[x[i]] <= t[i]。
