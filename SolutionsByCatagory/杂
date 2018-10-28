@@ -37,6 +37,13 @@ Solution：
 那LCM(A)和LCM(B)必不相等。反之亦然。
 那么就枚举A中每一数字，看B中所有能整除这个数字的元素的lcm是否与这个数字相等。对B同样处理。
 
+SRM 612 Div1 Easy
+有一个字，想把它变成n(n<=1000)个。每次可以copy所有到剪切板，可以粘贴所有回原串，可以从原串删除一个字。
+问最少步数。
+Solution：
+如果要删除，一定是最后一步删除多余的。
+那么dp[i]表示打i个字最少步数。枚举j<i，那么dp[i]=dp[j]+(i/j+(i%j!=0))*j-i。
+
 SRM 647 Div1 Easy
 给10^5个building设定高度，满足building[1]=0，相邻两个building高度delta<=1，所有高度非负数。
 且满足，给定x(size<=50)和t，building[x[i]] <= t[i]。
