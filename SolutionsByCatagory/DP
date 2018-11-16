@@ -40,6 +40,9 @@ dp。首先考虑单个环上的情况。转成链来看。dp[n,0]表示n个顶�
 dp方法是，把环0在fromVertex[0]和toVertex[0]处拆开，拆成上下两半，设为top和bottom。
 然后可以使用dp[top][0]/dp[top][1]/dp[bottom][0]/dp[bottom][1]的结果。
 
+SRM 618 Div1 Med
+
+
 SRM 644 Div1 Med
 N=10^15个人，进行K<=6轮比赛。每轮将现有人数分成R个room，每个room人数不少于2。每个room一人胜出，进行下一轮room划分和比赛。最终K轮之后至少1人胜出。
 问room划分总方案数。
