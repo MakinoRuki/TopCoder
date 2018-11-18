@@ -59,6 +59,10 @@ Solution：
 设询问为行，每种硬币类型为列。cij是每次询问每种硬币的个数。因此能区分所有硬币就要求任意两列不相等，且每列至少有个1。
 按照v[i+1]/v[i]把列排序，对于前j列，不同的合法列有(v[j+1]/v[j])^q - 1种(q为询问个数)。因此枚举列，取最大即可。
 
+SRM 620 Div1 Easy
+
+SRM 620 Div1 Med
+
 SRM 647 Div1 Easy
 给10^5个building设定高度，满足building[1]=0，相邻两个building高度delta<=1，所有高度非负数。
 且满足，给定x(size<=50)和t，building[x[i]] <= t[i]。
