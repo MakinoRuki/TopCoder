@@ -34,6 +34,11 @@ Solution：
 如果out[i]-in[i]>=2，则必然能找到in[j]-out[j]>0的点(det>=2显然可以，det=1则翻转后绝对值不变)。
 那么每次bfs找到i对应的j，然后路径上所有的边全部翻转。
 
+SRM 627 Div1 Med
+n(n<=1000)个顶点n条边的连通图，每个点有点权。找到所有simple path，把path上点权值组成一个数列，求所有这样的数列中逆序对最少是多少。
+Solution：
+n个点n条边的连通图应该是一棵树+一个环。每两点之间最多两条simple path。因此枚举根节点，dfs处所有simple path，同时用BIT维护逆序对数。
+
 SRM 658 Div2 Hard
 n*n(n<=50)的矩阵，每个格子是O，E，？。mat[i,j]='O'表示ij之间奇数条边，mat[i,j]='E'表示ij之间偶数条边，mat[i,j]='?'表示不确定。
 要求给出一棵树，满足矩阵里的条件。
