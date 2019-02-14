@@ -88,6 +88,13 @@ SRM 628 Div1 Med
 Solution：
 此表达式相当于保留k个最大的电阻，其中k为表达式运算后的值。运算表达式相当于先序遍历这棵树。
 
+SRM 630 Div1 Med
+一个长度为n(n<=50)的string，定义suffix[i]为以s[i]开头的后缀。给出所有n个suffix[i]的字典序排序SA，问这个string至少有多少个不同的字母。
+Solution：
+不同的字母最多的情况是，按照SA中顺序依次加一。我们要求s[SA[i]]<=s[SA[i+1]]。最好的情况是全部相等。
+那么决定s[SA[i]]是否可以等于s[SA[i+1]]的条件是，一旦这两个位置相等，那么suffix[SA[i]+1]必须要<=suffix[SA[i+1]+1]。
+因此，如果suffix[SA[i]+1]>suffix[SA[i+1]+1]，那么就必须添加新的字母。所以按照SA遍历，如果不可以相等，那么ans+=1。
+
 SRM 647 Div1 Easy
 给10^5个building设定高度，满足building[1]=0，相邻两个building高度delta<=1，所有高度非负数。
 且满足，给定x(size<=50)和t，building[x[i]] <= t[i]。
