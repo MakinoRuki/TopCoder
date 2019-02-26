@@ -123,6 +123,12 @@ Solution：
 每条路径的制约因素是该路径上最小的边权。因此从大到小添加边，并使用并查集check。如果刚好联通0和n-1，则ans+=3^i。否则合并。
 但是要注意，为了以后的答案也能考虑进来，刚好联通时，不要合并。
 
+SRM 635 Div1 Med
+给出n(n<=1000)对(place, cutoff)整数，选出最小的K满足重新排列某K个pair，就能使得所有n个pair满足place[i]<=cutoff[i]。
+Solution：
+首先找出所有的place[i]>cutoff[i]的pair，分别排序。然后从place从大到小开始看，如果对应的place[i]>cutoff[i]，
+那么从未选择的pair中找出cutoff[j]>=place[i]且place[j]最小的j，加入到选择的pair中。一直继续下去直到集合不再增加或者无解返回-1。
+
 SRM 647 Div1 Easy
 给10^5个building设定高度，满足building[1]=0，相邻两个building高度delta<=1，所有高度非负数。
 且满足，给定x(size<=50)和t，building[x[i]] <= t[i]。
