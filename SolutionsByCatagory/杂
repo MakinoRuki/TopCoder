@@ -129,6 +129,16 @@ Solution：
 首先找出所有的place[i]>cutoff[i]的pair，分别排序。然后从place从大到小开始看，如果对应的place[i]>cutoff[i]，
 那么从未选择的pair中找出cutoff[j]>=place[i]且place[j]最小的j，加入到选择的pair中。一直继续下去直到集合不再增加或者无解返回-1。
 
+SRM 639 Div1 Med
+给出n*m(n<=250, m<=250)的01矩阵，可以做两种操作。
+找一个行分界，把少的那半向多的那半折叠，使得少的那半折过来之后跟原矩阵的对应部分重合；
+找一个列分界，把少的那半向多的那半折叠，使得少的那半折过来之后重叠。
+问多次折叠后，能得到多少种不同的最终pattern。不同是指左上角位置不同或者扩充的范围不同。
+Solution：
+首先注意到，行列独立。
+因此枚举行dp，dp[i,j]表示从i行到j行是否能得到。dp[i,j]可以由dp[k,j]&dp[i,k]转移而来，而val[k,i+i-k]&val[j-(k-j),k]可以预处理出来。
+对列同样。然后行列结果相乘。
+
 SRM 647 Div1 Easy
 给10^5个building设定高度，满足building[1]=0，相邻两个building高度delta<=1，所有高度非负数。
 且满足，给定x(size<=50)和t，building[x[i]] <= t[i]。
