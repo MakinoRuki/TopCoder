@@ -77,14 +77,15 @@ Solution：
 SRM 734 Div1 Med
 牌堆中有10种牌，其中1可以看作11。牌堆中每种牌有0-4张，总数不超过16张。
 player有两张明牌，dealer有一张明牌。
-player可以选择从牌堆中摸牌或者停，但超过21则必须停。
+player可以选择从牌堆中摸牌或者停，但超过21则输掉。
 dealer首先将1看作11，如果总和在17到21之间则停止摸牌；否则将1看作1，超过21则输掉，否则必须继续摸牌。
-最终两边停止时，dealer大于21则player直接赢；否则如果player总和未超21且大于dealer，则player赢，反之dealer赢。
+最终两边停止时，player大于21则输；否则dealer大于21则player直接赢；否则如果player总和未超21且大于dealer，则player赢，反之dealer赢。
 问player赢的概率。
 Solution：
 直接暴力+记忆化搜。
 最多只有一张ace(11)。dp1[sum][ace][deck]表示player和为sum，有没有ace，牌堆状态为deck时player赢的概率。
-那么每次枚举player摸牌或者不摸，然后求出dealer的和取所有值的概率。同样记忆化dp2[sum][ace][deck]，不过这里面存的是长度为0-21的vector表示概率。
+那么每次枚举player摸牌或者不摸，然后求出dealer的和取所有值的概率。
+对于dealer同样记忆化dp2[sum][ace][deck]，不过这里面存的是长度为0-21的vector表示dealer最终结果为vector[i]的概率。
 
 SRM 739 Div1 Med
 300个牛，每个牛有个食量c[i]。路上坐标>1处有300个谷仓，每个谷仓无限量食物，坐标p[j]。开始所有牛都在0。
