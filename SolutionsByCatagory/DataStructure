@@ -31,3 +31,12 @@ TCO18 R2C Med
 Solution:
 其实也就是求2*(si - sj)>i-j的(j,i)对有多少。
 对每个位置用BIT维护si-i的和。然后枚举1-m求解。
+
+SRM 753 Div1 Med
+长度为Q(Q<=10^6)的伪随机序列，X[i]%rate!=0则在一个multiset中插入X[i]，否则假设插入了cnt个元素，则删掉第X[i]%cnt个插入的元素。
+如果此时set为空或者已经删过这个元素则什么都不做。每次操作后设当前set中两两亦或最大值为Y[i]，则Z[i]=(Z[i-1]*base+Y[i])%rate。求Z[Q-1]。
+Solution：
+用binary的trie树维护set中的数字。如果插入数字则维护最大值以及xor值为最大值的下标idx1&idx2；
+否则如果删掉的元素为idx1/idx2则清空集合重新插入所有再次维护最大值，不然就什么都不做。
+复杂度估计！！！
+由于是伪随机数列，删掉的元素为idx1/idx2的概率为2/Q，因此复杂度期望为Q*(2/Q*Q*log(MAXV)+(1-2/Q)*log(MAXV))=O(Q*log(MAXV))。
