@@ -24,3 +24,5 @@ SRM 754 Div1 Easy
 Solution：
 枚举一条边AB=(x0,y0)，求出与AB垂直的长度相等的向量(x0,-y0),(-x0,y0)，找出跟AB组成正方形的其余两点CD，不能同时出现在n个点中，
 则把没出现的点放进一个set里，统计set大小。
+
+SRM 754 Div1 Med
