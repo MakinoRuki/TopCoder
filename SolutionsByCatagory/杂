@@ -22,6 +22,13 @@ Solution：
 假设给出一个subset，如何判断它合法。就是low[i]的和以及c-(不在subset中的high[i]的和)取较大值，它>=x即可。
 那么在选的时候，就是low[i]排序，从大到小取。然后high[i]排序，从小到大取再用c减掉就可以了。
 
+SRM 608 Div1 Hard
+robot在0点，有n(n<=5000)个指令是L或者R使robot在x轴上左右移动，规定区间[-A,B]，如果某个指令使得robot超过-A或者B则discard这个指令。
+给定1<=minA<=maxA<=5000和1<=minB<=maxB<=5000，问对于每对(A,B)满足minA<=A<=maxA,minB<=B<=maxB，robot最终停下的位置是什么。
+Solution：
+枚举AB之后模拟。复杂度太高，所以考察可不可以用(A-1,B+1)的结果推(A,B)的结果。发现如果L>A-1||R>B则必有ans[A,B]=ans[A-1,B+1]-1。
+因此可以递推求解。对于边缘结果直接模拟，中间结果由边缘结果推出。复杂度O(maxB*n+maxB*maxB)。
+
 SRM 609 Div1 Med
 k(k<=10^5)种物品，每种10^9个。现在要分成一些package，每个package里有1-k个物品。使得每个package里要么全部一样，要么全部不一样。
 问最少多少个package。
