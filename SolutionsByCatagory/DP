@@ -42,6 +42,19 @@ Solution：
 如果a->b,那么F-d(a)+r(a)>=d(b)；如果b->a,那么F-d(b)+r(b)>=d(a)。
 所以r(a)>r(b)时，前者较容易满足；反之后者较容易满足。
 
+SRM 610 Div1 Hard
+n*m(n<=10^6,m<=10^6)的矩阵，一共有k(k<=1000)天，选择起始坐标之后，每天可以移动到一个新的坐标，满足|xi-x(i+1)|<=dxi && |yi-y(i+1)|<=dyi。
+每天会在(exi, eyi)处发现一个金币，则如果当天位于坐标(xi,yi)那么获得收益n+m-|exi-xi|-|eyi-yi|。
+问如何选择每天坐标，使得k天总收益最大。
+Solution：
+首先注意到x和y是互相独立的。
+对于某一维，从朴素dp开始想起。f(i,x)表示第i天在坐标x处的最大收益。那么f(i,x)=max{f(i+1, y)} + n - |x-ei|。
+复杂度太高。这里有一种神奇的解dp的方法。画函数图像！！！
+f(i,x)是一个concave函数，max{f(i,x)}也是一个concave函数，不过以最高点为对称轴向两边各expand了dxi/dyi。
+当我们加上n-|x-ei|时，由于这也是一个concave函数且concave函数的和也是concave函数，所以得到的还是concave函数。
+所以我们可以迭代k步，每次是expand之后add。由于expand之后x会超出[0,n]，所以我们要cut一下，也就是只保留[0,n](包括0和n这两点)。
+每次迭代维护一条polyline，line上最多有k个节点，原先不存在的点要interpolate出来。每次最多增加1/2。
+
 SRM 613 Div1 Med
 给出[low, high]的一个区间，其中high-low<=10^5。用这个区间内的数字构造一个长度为n(n<=10^9)的数列，满足数列的gcd=k(k<=10^9)。
 问方案数。
