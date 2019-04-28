@@ -613,3 +613,14 @@ Solution：
 直接dp啦。dp[i,j,k]表示B知道了i张C知道了j张当前应当是A/B/C，到终点的期望步数。因此i==n|j==n时答案是0。
 方程dp[i,j,0/1/2]写出来会发现有环，因此几个式子互相代一代可以消去一些东西先求出dp[i,j,0]用dp[i,j+1,A/B/C]和dp[i+1,j,A/B/C]表示的表达式。
 开始给出的m轮可以用于计算最终取解的时候dp[n1,n2,0]的n1和n2。
+
+SRM 756 Div1 Hard
+给出一个50×50矩阵，'x'表示special cell，'.'表示inactive cell，'#'表示active cell，'*'表示undecided cell。
+现在要给每个'*'指定为inactive或者active，然后相邻的active cell连边('x'也是active cell)。
+然后给每条边用红蓝黄其一色染色，问有多少指定cell的方法使得存在一种染色方案，使得所有special cell没有同色的相邻边。答案mod 1e^9+7。
+Solution：
+1. 如果不跟special cell相邻的'*'那么就是free cell随便指定，每个cell有两种方案。否则要看相邻的special cell的情况。
+2. 每个special cell如果周围存在至少一个不可能为active的cell，那么这个special cell就是不需要考虑的，一定存在一种方案可以让它的相邻边不同色。
+3. 对于相邻四个可能全为active的special cell，设为interesting cell。每个非free的'*'把它周围四个interesting cell的情况状态压缩。
+4. 每个非free cell指定为inactive时会free掉它mask的周围的interesting cell。状压dp求出把所有interesting cell全部free的方案数。
+5. 最终结果再乘以2^(# of free cell)次幂。
