@@ -1,3 +1,4 @@
+// 给定一个数x，它的# of byes是最低位1和最高位1之间0的个数+1。 因此暴力+=lowbit(x)即可。
 #include <iostream>
 #include <cstdio>
 #include <cstring>
