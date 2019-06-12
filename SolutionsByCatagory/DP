@@ -64,6 +64,21 @@ dp[i]表示gcd=i的方案数，dp[i]=(dp[i]-dp[2*i]-...-dp[i*j]) (i*j<=10^5+1)�
 如果i*j>10^5+1，那么整个区间必须全部选这一个数(区间长度不超过10^5+1)。
 那么可以枚举区间内每个数字[low/k/i, high/k/i]，在dp[i]里减去1即可。
 
+SRM 613 Div1 Hard
+给一个n(n<=50)*m(m<=200)的矩阵，给出n个left和n个right，在矩阵中填1，需要满足：
+1. 每一行中，左边left[i]列有且只有1个1，右边right[i]列有且只有1个1。
+2. 每一列中，最多有1个1。
+问方案数mod 1e9+7。
+Solution：
+从左到右check每一列，记录有多少需要end的left和多少已经start的right。因此每一列可以有4种选择：
+1. 不放。
+2. 放在非left也非right的格子里。
+3. 放在left的格子里。
+4. 放在right的格子里。
+一个trick是，当我选择满足left的时候，我只是记下选了多少col用来满足left而不去分配给具体的left[i]；
+而是在等到碰到left[i]的end列的时候才乘上组合数去分配。
+因此dp[i,j,k]表示到第i列，选了j列去满足left，有k个right已经start且需要去满足的方案数。
+
 SRM 614 Div1 Med
 n(n<=50)个环，每个环不超过10^6个点。然后环之间用边相连(toVertex[i]->fromVertex[i+1])。用k(k<=10^9)种颜色染色。
 给出fromVertex数组和toVertex数组，要求toVertex[i]和fromVertex[i+1]同色。且环上相邻两点不同色。问方案数。
