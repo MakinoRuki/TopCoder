@@ -639,3 +639,11 @@ Solution：
 3. 对于相邻四个可能全为active的special cell，设为interesting cell。每个非free的'*'把它周围四个interesting cell的情况状态压缩。
 4. 每个非free cell指定为inactive时会free掉它mask的周围的interesting cell。状压dp求出把所有interesting cell全部free的方案数。
 5. 最终结果再乘以2^(# of free cell)次幂。
+
+SRM 760 Div1 Easy
+有n个选手，要安排两个round的比赛，每个round有n/2场比赛，两两对战。使得每个人各在每个round里参加一场，且必须一场主场一场客场。
+且同一对选手不能在两个round里都出现。问方案数mod 1e9+7。
+Solution：
+每个人要么round1主场round2客场，要么反之。因此C(n,n/2)枚举哪些人前者哪些人后者。
+这样对于round1，选出的n/2的选手去选择配对另外n/2选手。对于round1的(n/2)!种配对方法，对于round2的唯一影响就是不能再选择该人。
+因此成为一个全错排问题。答案就是c(n,n/2)*(n/2)!*d(n),d(n)=(n-1)(d(n-1)+d(n-2))。
