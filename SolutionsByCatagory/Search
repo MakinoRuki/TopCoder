@@ -116,3 +116,9 @@ SRM 758 Div1 Easy
 self-describing number指，长度为偶数；如果分解到十进制表示的各位a[0],b[0],a[1],b[1],...,a[x],b[x]，满足这个数字exactly包含a[i]个b[i]。
 Solution：
 考察一下发现0的个数只能是1，除了1最多出现9次以外，其它数字个数(a[i])不能超过3。因此暴搜。
+
+SRM 759 Div1 Med
+长度为n(n<=28)的string算hash，hash(s)=(ans*127+ord(s[i]))%mod。其中ord(s[i])为s[i]的ascii码。
+问使得s[i]为a[i]/b[i]/c[i]的s的最小hash值是多少。
+Solution：
+折半搜索。然后在枚举左半结果选取右半结果的时候，因为要取mod，所以说要么是mod-left最小，要么是(mod+x-left)最小，其中0<=x<left。
