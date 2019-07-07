@@ -1,3 +1,4 @@
+// 本题正解应该是FFT。
 #include <iostream>
 #include <cstdio>
 #include <cstring>
