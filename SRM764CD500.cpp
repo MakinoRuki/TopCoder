@@ -1,4 +1,5 @@
 // (x+y)^2+(x-y)^2+(z-s)^2+(z+s)^2=2(x^2+y^2+z^2+s^2)=a^2+b^2+c^2+d^2
+// 欧拉四平方和定理
 #include <iostream>
 #include <cstdio>
 #include <vector>
