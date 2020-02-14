@@ -1,4 +1,6 @@
 # TopCoder
+https://community.topcoder.com/stat?c=round_overview&er=197&rd=17802
+
 https://apps.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis
 
 https://www.topcoder.com/single-round-match-776-editorials/
