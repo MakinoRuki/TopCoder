@@ -1,4 +1,46 @@
-#include <iostream>
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<vector>
+#include<algorithm>
+#define N 60
+using namespace std;
+class PowerOfThree{
+	public:
+		int bit[N];
+		string ableToGet(int x, int y){
+			int maxbit = -1;
+			memset(bit,0,sizeof(bit));
+			int bits = 0;
+			x = abs(x);
+			y = abs(y);
+			while(x){
+				int rem = x%3;
+				x/=3;
+				if(rem==2)x++,rem = -1;
+				bit[bits] = rem;
+				bits++;
+			}
+			maxbit = max(maxbit,bits);
+			bits = 0;
+			while(y){
+				int rem = y%3;
+				y/=3;
+				if(rem==2)y++,rem = -1;
+				if(rem!=0){
+					if(bit[bits]!=0)return "Impossible";
+					bit[bits] = rem;
+				}
+				bits++;
+			}
+			maxbit = max(maxbit,bits);
+			for(int i = 0;i<maxbit;++i)
+				if(bit[i]==0)return "Impossible";
+			return "Possible";
+		}
+};
+
+/*#include <iostream>
 #include <cstdio>
 #include <cstring>
 #include <vector>
@@ -42,4 +84,4 @@ public:
 		}
 		return "Possible";
 	}
-};
+}; */
